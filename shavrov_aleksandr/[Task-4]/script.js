@@ -1,6 +1,3 @@
-// ============================================================
-// 4.1 Класс Car
-// ============================================================
 class Car {
   constructor(make, model, owners = []) {
     this.id = Date.now() + Math.random();
@@ -22,10 +19,6 @@ class Car {
     return this.owners.length;
   }
 }
-
-// ============================================================
-// 4.2 Функции для работы с массивом автомобилей
-// ============================================================
 
 function groupByMake(cars) {
   return cars.reduce((acc, car) => {
@@ -56,10 +49,6 @@ function getCarsByOwner(cars, name) {
 function getModelsByMake(cars, make) {
   return cars.filter(car => car.make === make).map(car => car.model);
 }
-
-// ============================================================
-// 4.3 Хранилище и асинхронные операции
-// ============================================================
 
 const STORAGE_KEY = 'lab4_cars';
 
@@ -106,7 +95,7 @@ function showStatus(msg, type = 'info') {
 }
 
 async function handleAddCar() {
-  const make  = document.getElementById('newMake').value.trim();
+  const make = document.getElementById('newMake').value.trim();
   const model = document.getElementById('newModel').value.trim();
   if (!make || !model) {
     showStatus('Заполните марку и модель!', 'error');
@@ -121,7 +110,7 @@ async function handleAddCar() {
   saveCars();
   hideLoading();
 
-  document.getElementById('newMake').value  = '';
+  document.getElementById('newMake').value = '';
   document.getElementById('newModel').value = '';
 
   showStatus(`Автомобиль ${make} ${model} добавлен.`, 'success');
@@ -178,23 +167,19 @@ async function handleRemoveOwner(carId, ownerName) {
   render();
 }
 
-// ============================================================
-// Фильтры
-// ============================================================
-
 let activeFilters = { make: '', owner: '', ownerCount: '' };
 
 function applyFilters() {
-  activeFilters.make       = document.getElementById('filterMake').value;
-  activeFilters.owner      = document.getElementById('filterOwner').value.trim().toLowerCase();
+  activeFilters.make = document.getElementById('filterMake').value;
+  activeFilters.owner = document.getElementById('filterOwner').value.trim().toLowerCase();
   activeFilters.ownerCount = document.getElementById('filterOwnerCount').value;
   renderCards(getFilteredCars());
 }
 
 function resetFilters() {
   activeFilters = { make: '', owner: '', ownerCount: '' };
-  document.getElementById('filterMake').value       = '';
-  document.getElementById('filterOwner').value      = '';
+  document.getElementById('filterMake').value = '';
+  document.getElementById('filterOwner').value = '';
   document.getElementById('filterOwnerCount').value = '';
   renderCards(cars);
 }
@@ -213,10 +198,6 @@ function getFilteredCars() {
     return true;
   });
 }
-
-// ============================================================
-// Рендер
-// ============================================================
 
 function updateMakeFilter() {
   const sel = document.getElementById('filterMake');
